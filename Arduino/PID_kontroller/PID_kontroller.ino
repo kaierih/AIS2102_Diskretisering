@@ -31,9 +31,9 @@ void loop()
   if(millis() > next_sample_checkpoint)
   {
     next_sample_checkpoint += T_s; // Set new checkpoint for next sample.
-    int sensor_value = analogRead(A0)-512; // Measured process output
+    int sensor_value = analogRead(A0); // Measured process output
     int setpoint = analogRead(A1);     // Process value setpoint r(t)
     float controller_output = controller.update(setpoint, sensor_value);
-    MCP.analogWrite(round(controller_output) + 512, 0);   // Write output value to DAC
+    MCP.analogWrite(round(controller_output), 0);   // Write output value to DAC
   }
 }

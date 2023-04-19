@@ -8,7 +8,7 @@
 float PID::update(float r, float y)
 {
   float e = r - y; // Error e(t)
-  float u = K_p * e + K_i * I.update(e) + K_d * D.update(y);
+  float u = K_p * e + K_i * I.update(e) - K_d * D.update(y);
   return u;
 }
 
