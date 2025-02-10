@@ -1,0 +1,10 @@
+\begin{tikzpicture}[auto, node distance=25mm]
+	% blocks 1st level
+	\node[input] (in){};
+	\node[block, right of=in, minimum height=1.5cm, text width=2cm, align=center](sys1){Unit Delay  \\ \large $z^{-1}$};
+	\node[output, right of=sys1, xshift=1cm] (out){};
+
+	% lines
+	\draw[->] (in) node[above]{$u[n]$} node[below]{$U(z)$} --(sys1) node[left]{} ;
+   	\draw[->] (sys1) node[right]{}--(out) node[above]{$y[n] = u[n-1]$} node[below]{$Y(z) = U(z)\cdot z^{-1}$};
+\end{tikzpicture}
