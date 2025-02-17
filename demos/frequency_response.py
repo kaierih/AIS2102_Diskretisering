@@ -167,10 +167,10 @@ class FreqRespDemo:
     def update(self, w):
         index = int(w*128)*4
         
-        self.ampMarker.set_xdata(self.w[index])
-        self.ampMarker.set_ydata(self.Hw_amp[index])
-        self.phaseMarker.set_xdata(self.w[index])
-        self.phaseMarker.set_ydata(self.Hw_phase[index]/pi)
+        self.ampMarker.set_xdata([self.w[index]])
+        self.ampMarker.set_ydata([self.Hw_amp[index]])
+        self.phaseMarker.set_xdata([self.w[index]])
+        self.phaseMarker.set_ydata([self.Hw_phase[index]/pi])
         self.ax11.set_title(r"$\left| H \left( "+str(round(w,2))+r"\pi \right) \right| = "+str(round(self.Hw_amp[index],2))+"$")
         self.ax12.set_title(r"$\angle H \left( "+str(round(w,2))+r"\pi \right) = "+str(round(self.Hw_phase[index]/pi,2))+"\pi$")
         titlestr = (r"$x[n] = \sin("+str(round(w,2))+r"\pi \cdot n), \ \ \ \ y[n]="+
