@@ -11,6 +11,8 @@ from .sinusoid_spectrum import SinusoidSpectrumDemo
 from .spectral_leakage import SpectralLeakageDemo
 from .dtft import DTFT_Demo
 from .frequency_response import FreqRespDemo
+from .euler_demo import EulerDemo1D
+
 
 __all__ = ["CrossCorrelationDemo",
            "ConvolutionDemo",
@@ -27,4 +29,5 @@ __all__ = ["CrossCorrelationDemo",
            "SinusoidSpectrumDemo",
            "SpectralLeakageDemo",
            "DTFT_Demo",
-           "FreqRespDemo"]
+           "FreqRespDemo",
+          "EulerDemo1D"]

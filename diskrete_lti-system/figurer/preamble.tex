@@ -1,0 +1,112 @@
+% Graphics
+\usepackage{graphicx} % Required for inserting images
+\usepackage{wrapfig}
+\graphicspath{{figures/}}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{bodeplot}
+
+% TiKZ
+\usepackage{tikz}
+\usepackage[european,americaninductor,americanvoltages, americancurrents]{circuitikz}
+
+\makeatletter
+\newcommand\currentcoordinate{\the\tikz@lastxsaved,\the\tikz@lastysaved}
+\makeatother
+
+\usepackage{tikzscale}
+
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing,calligraphy}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.markings}
+
+
+\tikzset{>=Triangle}
+
+% circuitikz components
+%% voltage regulator
+\ctikzsubcircuitdef{lmSE}{% SE = seven, eight, no numbers allowed here
+    in, out, gnd, center}{% anchors
+    coordinate (#1-center)
+    node[rectangle, draw=black, thick, minimum width=2cm, minimum height=1cm, anchor=center](#1-shape){}
+    % labels
+    (#1-shape.north) node[below]{\ifx&#2&%
+  \ttfamily\tiny LM7805
+\else
+  \ttfamily\tiny #2
+\fi}
+    (#1-shape.west)  node[right]{\tiny IN}
+    (#1-shape.east)  node[left]{\tiny OUT}
+    (#1-shape.south)  node[above]{\tiny GND}
+    % anchors
+    (#1-shape.west) coordinate(#1-in)
+    (#1-shape.south) coordinate(#1-gnd)
+    (#1-shape.east) coordinate(#1-out)
+    % we are leaving the "current" position at the output
+}
+
+%% optocoupler
+\ctikzsubcircuitdef{optocoupler}{
+    inp, inn, outp, outn, center}{% anchors
+    coordinate (#1-center)
+    node[rectangle, draw=black, thick, minimum width=2.3cm, minimum height=2.3cm, anchor=center](#1-shape){}
+    % anchors
+    ($(#1-shape.south west)!0.8!(#1-shape.north west)$) coordinate(#1-inp)
+    ($(#1-shape.south west)!0.1!(#1-shape.north west)$) coordinate(#1-inn)
+    ($(#1-shape.south east)!0.8!(#1-shape.north east)$) coordinate(#1-outp)
+    ($(#1-shape.south east)!0.1!(#1-shape.north east)$) coordinate(#1-outn)
+    % internals
+    (#1-inp) to[short,o-] ++(0.5,0) coordinate (#1-pin) to[Do] (#1-pin |- #1-inn) to[short,-o] (#1-inn)
+    (#1-outp) to[short,o-] ++(-0.5,0) coordinate (#1-pin) to[Tnpn,photo,invert] (#1-pin |- #1-outn) to[short,-o] (#1-outn)
+    (#1-shape.north) node[below]{\ifx&#2&%
+  \ttfamily\tiny Optocoupler
+\else
+  \ttfamily\tiny #2
+\fi}
+}
+
+
+
+\definecolor{maincolor}{rgb}{0.9, 0.17, 0.31} %red
+\definecolor{accentcolor}{rgb}{0.17, 0.31, 0.9} %blue
+\definecolor{accentcolor2}{rgb}{0.17, 0.90, 0.39} %green
+ 	
+
+% Math
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Other
+\usepackage[norsk]{cleveref}
+\usepackage[norsk]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{siunitx}
+
+
+% Hyphenation 
+\babelhyphenation[norsk]{
+    imagi-nære
+    kom-plekse
+    kom-plekst
+    rotasjons-operator
+    spen-ning
+    spen-ningen
+    spen-ninger
+    spen-ningene
+}
+
+% Commands
+\newcommand{\ju}{\ensuremath{\boldsymbol{j}}}
+\newcommand{\volts}[1]{\SI{#1}{\volt}}
+
+\newcommand{\uinn}{\ensuremath{u_\text{inn}}}
+\newcommand{\uut}{\ensuremath{u_\text{ut}}}
+\newcommand{\uss}{\ensuremath{u_\text{ss}}}
+\newcommand{\ucc}{\ensuremath{u_\text{cc}}}
+\newcommand{\udd}{\ensuremath{u_\text{dd}}}
+\newcommand{\uee}{\ensuremath{u_\text{ee}}}
+\newcommand{\upp}{\ensuremath{u_+}}
+\newcommand{\unn}{\ensuremath{u_-}}

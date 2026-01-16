@@ -1,0 +1,10 @@
+\documentclass{standalone}
+\include{preamble.tex}
+\begin{document}
+    \scalebox{5.0}{
+    \begin{tikzpicture}
+        \draw node[ground]{} (0,0)  to[vsource,l^=\uut,invert] ++(0,3) to[R=R,v=$u_\text{R}$] ++(3,0) to[C,l_=C,v^=$u_\text{C}$] ++(0,-3) node[ground]{}
+        ;
+    \end{tikzpicture}
+    }
+\end{document}
