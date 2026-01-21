@@ -12,7 +12,8 @@ from .spectral_leakage import SpectralLeakageDemo
 from .dtft import DTFT_Demo
 from .frequency_response import FreqRespDemo
 from .euler_demo import EulerDemo1D
-
+from .z_transform import tfPlot, pzPlot, Magnitude_dB, visualizeTF, showOscillation, showDiscreteOscillation, HsPlot
+from .Frekvensrespons import ContFreqRespDemo
 
 __all__ = ["CrossCorrelationDemo",
            "ConvolutionDemo",
@@ -30,4 +31,12 @@ __all__ = ["CrossCorrelationDemo",
            "SpectralLeakageDemo",
            "DTFT_Demo",
            "FreqRespDemo",
-          "EulerDemo1D"]
+           "EulerDemo1D",
+           "tfPlot",
+           "pzPlot",
+           "Magnitude_dB", 
+           "visualizeTF", 
+           "showOscillation", 
+           "showDiscreteOscillation",
+           "HsPlot",
+           "ContFreqRespDemo"]
